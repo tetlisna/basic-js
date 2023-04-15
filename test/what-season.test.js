@@ -47,7 +47,7 @@ describe('What season', () => {
                 summer,
                 autumn,
             ] = [
-                    new Date(1900, 0, 22, 23, 45, 11, 500),
+                    2,
                     new Date(1354, 4, 17, 11, 27, 4, 321),
                     new Date(1, 6, 13, 23, 45, 11, 500),
                     new Date(22, 8, 22, 3, 0, 11, 500),

@@ -27,9 +27,7 @@ function getSeason(date) {
 		month = date;
 	} else if (!isNaN(date)) {
 		month = +date.getMonth() + 1;
-	} else {
-  }
-
+	} 
 	let season;
 
 	switch (month) {

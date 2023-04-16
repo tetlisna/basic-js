@@ -14,28 +14,33 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function transform(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error(`'arr' parameter must be an instance of the Array!`);
+  }
 	const trArr = [...arr];
-	if (trArr instanceof Array === false ) {
-		throw new Error(`'arr' parameter must be an instance of the Array!`);
-	}
+
 	for (let i = 0; i < trArr.length; i++) {
     
-		if (!isNaN(trArr[i])) {
-			return trArr;
-		}
+		// if (!isNaN(trArr[i])) {
+		// 	return trArr;
+		// }
 
-		if (trArr[i] === '--discard-next') {
-			trArr.splice(trArr[i - 1], 2);
-		} else if (trArr[i] === '--discard-prev') {
-			trArr.splice(trArr[i - 2], 2);
-		} else if (trArr[i] === '--double-prev') {
-			trArr[i - 1];
-			trArr[i] = trArr[i - 1];
-		} else if (trArr[i] === '--double-next') {
-			trArr[i + 1];
-			trArr[i] = trArr[i + 1];
-		}
+    // console.log();
+
+		// if (trArr[i] === '--discard-next') {
+		// 	trArr.splice(trArr[i - 1], 2);
+		// } else if (trArr[i] === '--discard-prev') {
+		// 	trArr.splice(trArr[i - 2], 2);
+		// } else if (trArr[i] === '--double-prev') {
+		// 	trArr[i - 1];
+		// 	trArr[i] = trArr[i - 1];
+		// } else if (trArr[i] === '--double-next') {
+		// 	trArr[i + 1];
+		// 	trArr[i] = trArr[i + 1];
+		// }
+    
 	}
+console.log(trArr, "trArr");
 	return trArr;
 }
 // console.log(transform([1, 2, 3, '--discard-prev', 4, 5]), 'discard-prev');

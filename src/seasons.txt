@@ -1,0 +1,23 @@
+
+> basic-js@1.0.0 test
+> mocha /Users/apple/Downloads/Bored/basic-js/test/what-season.test.js
+
+
+
+  What season
+    variable presence
+      ✔ function getSeason exists
+    base requirements
+      ✔ returns proper value
+      ✔ returns proper value if date is before 1970
+      ✔ returns proper value (month index)
+      ✔ corretly handles argument absence
+      ✔ some pack of tests
+    extended requirements 
+      ✔ throws an error with message "Invalid date!" on invalid argument
+      ✔ throws an error with message "Invalid date!" on tricky moment
+      ✔ throws an error with message "Invalid date!" on a very tricky moment
+
+
+  9 passing (15ms)
+

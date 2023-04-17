@@ -1,4 +1,4 @@
-const { assert } = require('chai');
+ const { assert } = require('chai');
 const { testOptional } = require('../extensions/index.js');
 const { deleteDigit } = require('../src/delete-digit.js');
 

@@ -14,40 +14,54 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function transform(arr) {
-  if (!Array.isArray(arr)) {
-    throw new Error(`'arr' parameter must be an instance of the Array!`);
-  }
-	const trArr = [...arr];
-
-	for (let i = 0; i < trArr.length; i++) {
-    
-		// if (!isNaN(trArr[i])) {
-		// 	return trArr;
-		// }
-
-    // console.log();
-
-		// if (trArr[i] === '--discard-next') {
-		// 	trArr.splice(trArr[i - 1], 2);
-		// } else if (trArr[i] === '--discard-prev') {
-		// 	trArr.splice(trArr[i - 2], 2);
-		// } else if (trArr[i] === '--double-prev') {
-		// 	trArr[i - 1];
-		// 	trArr[i] = trArr[i - 1];
-		// } else if (trArr[i] === '--double-next') {
-		// 	trArr[i + 1];
-		// 	trArr[i] = trArr[i + 1];
-		// }
-    
+	console.log('******************************', arr);
+	if (!Array.isArray(arr)) {
+		throw new Error(`'arr' parameter must be an instance of the Array!`);
 	}
-console.log(trArr, "trArr");
+	const trArr = [];
+
+	let discard_next = false;
+	let discarded = false;
+	let double_next = false;
+
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] === '--discard-next') {
+			discard_next = true;
+		} else if (arr[i] === '--discard-prev') {
+			if (trArr.length) {
+				if (!discarded) {
+					trArr.pop();
+				} else {
+					discarded = false;
+				}
+			}
+		} else if (arr[i] === '--double-prev') {
+			if (trArr.length) {
+				if (!discarded) {
+					trArr.push(trArr[trArr.length - 1]);
+				} else {
+					discarded = false;
+				}
+			}
+		} else if (arr[i] === '--double-next') {
+			double_next = true;
+		} else {
+			if (!discard_next) {
+				trArr.push(arr[i]);
+
+				if (double_next) trArr.push(arr[i]);
+			} else {
+				discarded = true;
+			}
+
+			discard_next = false;
+			double_next = false;
+		}
+	}
 	return trArr;
 }
-// console.log(transform([1, 2, 3, '--discard-prev', 4, 5]), 'discard-prev');
-// console.log(transform([1, 2, 3, '--discard-next', 4, 5]), 'discard-next');
-// console.log(transform([1, 2, 3, '--double-next', 4, 5]), 'double-next'); //123445
-// console.log(transform([1, 2, 3, '--double-prev', 4, 5]), 'double-prev'); //123345
+
 
 module.exports = {
-  transform
-}
+	transform,
+};
